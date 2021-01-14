@@ -7,8 +7,8 @@ def players
   puts "Nice to meet you #{p_one.chomp} and #{p_two.chomp}. Lets begin!"
   [p_one, p_two]
 end
-to_play = players 
-#in the logic this will be bade with "attr_" in a class 
+to_play = players
+# in the logic this will be bade with "attr_" in a class
 def start(turn)
   pos = ['-', '-', '-', '-', '-', '-', '-', '-', '-']
   puts "Now #{turn[0].chomp}, it's your turn, choose your position based on a number"
@@ -28,8 +28,8 @@ def start(turn)
   puts " #{pos[6]} | #{pos[7]} | #{pos[8]} "
   puts
   puts "Now #{turn[1].chomp}, your turn, here is the map again"
-end 
-#The code will repeat from line 10 until the pos line is filled 
+end
+# The code will repeat from line 10 until the pos line is filled
 
 def winner(won)
   puts
