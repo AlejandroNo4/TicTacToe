@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+require_relative '../lib/core_game.rb'
 class Player
   attr_accessor :name, :char
   def initialize(char)
@@ -50,33 +51,7 @@ class GameDisplay
   end
 end
 
-class WinTest
-  attr_accessor :test_res
-  def initialize
-    @lines = [/[1, 2, 3]/, /[4, 5, 6]/, /[7, 8, 9]/,
-              /[1, 4, 7]/, /[2, 5, 8]/, /[3, 6, 9]/,
-              /[1, 5, 9]/, /[3, 5, 7]/]
-    @test_res = false
-    @x_choices = ''
-    @o_choices = ''
-  end
-
-  def search(collection)
-    @test_res = true if @lines.any? { |r| collection.scan(r).length == 3 }
-  end
-
-  def checker(number, played_by)
-    @x_choices << number if played_by == 'X'
-    @o_choices << number if played_by == 'O'
-    if @x_choices.length > 3 && played_by == 'X'
-      search(@x_choices)
-    elsif @o_choices.length > 3
-      search(@o_choices)
-    end
-  end
-end
-
-class CoreGame
+class Start
   attr_accessor :player_one, :player_two, :turn
   def initialize(player_one, player_two)
     @player_one = player_one
@@ -86,7 +61,7 @@ class CoreGame
   def switch
     between_this = [@player_one, @player_two].cycle
     @round = GameDisplay.new
-    @check_if_win = WinTest.new
+    @check_if_win = CoreTest.new
     i = 0
     while i < 9
       @turn = between_this.next
@@ -100,6 +75,6 @@ class CoreGame
   end
 end
 
-start = CoreGame.new([first.name, first.char], [second.name, second.char])
+game = Start.new([first.name, first.char], [second.name, second.char])
 
-start.switch
+game.switch
