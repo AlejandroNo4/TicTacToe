@@ -38,8 +38,7 @@ class GameDisplay
     @is_valid = false
     while @is_valid == false
       @position = gets
-      if @position.to_i.zero? || @choosed.any? { |u| u == @position } || 
-         @position.to_i.between?(1, 9) == false
+      if @position.to_i.zero? || @choosed.any? { |u| u == @position } || @position.to_i.between?(1, 9) == false
         puts "Wait! Please enter a valid number\n"
         redo
       else
