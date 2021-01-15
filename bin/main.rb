@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
 def players
-  puts "Hello! who's the player one?, you will play with X."
+  puts "Hello! who's the player one?, you will play as X."
   p_one = gets
-  puts "Cool, and who's going to play with O?"
+  puts "Cool, and who's going to play as O?"
   p_two = gets
   puts "Nice to meet you #{p_one.chomp} and #{p_two.chomp}. Lets begin!"
   [p_one, p_two]
