@@ -1,5 +1,13 @@
+class Player
+  attr_accessor :name, :char
+  def initialize(player)
+    @char = ''
+    @name = player
+  end
+end
+
 class CoreTest
-  attr_accessor :test_res
+  attr_reader :test_res
   def initialize
     @lines = [/[1, 2, 3]/, /[4, 5, 6]/, /[7, 8, 9]/,
               /[1, 4, 7]/, /[2, 5, 8]/, /[3, 6, 9]/,
@@ -20,6 +28,54 @@ class CoreTest
       search(@x_choices)
     elsif @o_choices.length > 3
       search(@o_choices)
+    end
+  end
+end
+
+class Spots
+  attr_accessor :pos, :spots_arr, :choice
+  def initialize
+    @spots_arr = ['-', '-', '-', '-', '-', '-', '-', '-', '-']
+    @ocuped = []
+    @choice = 0
+  end
+
+  def assign(token)
+    @invalid = true
+    while @invalid == true
+      @choice = gets
+      if @choice.to_i.zero? || @ocuped.any? { |u| u == @choice } || @choice.to_i.between?(1, 9) == false
+        wrong_input
+        redo
+      else
+        @ocuped << @choice
+        @spots_arr[@choice.to_i - 1] = token
+      end
+      return @invalid = false
+    end
+  end
+end
+
+class Start
+  attr_writer :player_one, :player_two
+  def initialize(player_one, player_two)
+    @player_one = player_one
+    @player_two = player_two
+  end
+
+  def switch
+    @game_spots = Spots.new
+    @check_if_win = CoreTest.new
+    between = [@player_one, @player_two].cycle
+    i = 0
+    while i < 9
+      @turn = between.next
+      map(@turn.name, @turn.char, @game_spots.spots_arr)
+      @check_if_win.checker(@game_spots.choice, @turn.char)
+      return winner_msg(@turn.name) if @check_if_win.test_res == true
+
+      i += 1
+      tie_message if i == 9
     end
   end
 end
