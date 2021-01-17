@@ -2,8 +2,8 @@
 
 # Assign the tokens to the players
 class Player
-  attr_writer :char
-  attr_reader :name, :char
+  attr_accessor :char
+  attr_reader :name
 
   def initialize(player)
     @char = ''
