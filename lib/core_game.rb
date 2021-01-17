@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # Assign the tokens to the players
 class Player
   attr_accessor :char
