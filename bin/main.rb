@@ -1,30 +1,17 @@
 #!/usr/bin/env ruby
-feature-game-logic
-require_relative '../lib/core_game.rb'
-
 # frozen_string_literal: false
 
 require_relative '../lib/core_game'
-development
 def wrong_input
   puts "I'm sorry, please choose a valid input:"
   puts '- Must to be a number between 1 and 9'
   puts '- Must to be a free space'
-feature-game-logic
 end
 
 def winner_msg(name)
   puts "Congrats #{name.chomp} you have WON!!! :D"
 end
 
-
-end
-
-def winner_msg(name)
-  puts "Congrats #{name.chomp} you have WON!!! :D"
-end
-
-development
 def tie_message
   puts "I'm sorry, this was a tie, good luck next time :)"
 end
@@ -52,3 +39,4 @@ def game_setting
 end
 
 game_setting
+
