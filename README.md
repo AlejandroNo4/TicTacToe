@@ -7,7 +7,7 @@
 
 This project is part of the Microverse curriculum "Ruby." It is a Tic-Tac-Toe game that the user can play from the terminal. According to the instructions, the main objective was to create the game using OOP (Object Oriented Programming), applying Ruby Classes.
 
-Tic Tac Toe is a two-player game, where to turn by turn, both try to complete a line of their own "token" ("X" or "O") in a 3 x 3 grid.
+Tic Tac Toe is a two-player game, where turn by turn, both try to complete a line of their own "token" ("X" or "O") in a 3 x 3 grid.
 
 ## Installation
 
