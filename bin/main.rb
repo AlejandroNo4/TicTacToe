@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
-require_relative '../lib/GameCore.rb'
+# frozen_string_literal: false
+
+require_relative '../lib/core_game'
 def wrong_input
   puts "I'm sorry, please choose a valid input:"
   puts '- Must to be a number between 1 and 9'

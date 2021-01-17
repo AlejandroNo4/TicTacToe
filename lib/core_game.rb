@@ -1,3 +1,6 @@
+# frozen_string_literal: false
+
+# Assign the tokens to the players
 class Player
   attr_accessor :name, :char
 
@@ -49,12 +52,10 @@ class Spots
     @invalid = true
     while @invalid == true
       @choice = gets
-      if @choice.to_i.zero? || @ocuped.any? { |u| u == @choice } || @choice.to_i.between?(1, 9) == false
-        wrong_input
-        redo
-      else
-        return acti(token)
-      end
+      (unless @choice.to_i.zero? || @ocuped.any? { |u| u == @choice } || @choice.to_i.between?(1, 9) == false
+         return acti(token); end)
+      wrong_input
+      redo
     end
   end
 
@@ -90,4 +91,3 @@ class Start
     end
   end
 end
-
