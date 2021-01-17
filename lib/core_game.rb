@@ -1,4 +1,4 @@
-# frozen_string_literal: false
+# frozen_string_literal: true
 
 # Assign the tokens to the players
 class Player
@@ -91,4 +91,3 @@ class Start
     end
   end
 end
-

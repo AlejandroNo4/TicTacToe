@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-# frozen_string_literal: false
+# frozen_string_literal: true
 
 require_relative '../lib/core_game'
 def wrong_input
@@ -39,4 +39,3 @@ def game_setting
 end
 
 game_setting
-
