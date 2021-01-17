@@ -1,8 +1,7 @@
-# frozen_string_literal: false
-
 # Assign the tokens to the players
 class Player
-  attr_accessor :name, :char
+  attr_accessor :char
+  attr_reader :name
 
   def initialize(player)
     @char = ''
@@ -40,7 +39,7 @@ end
 
 # Assing the chosen token to its place in the map
 class Spots
-  attr_accessor :pos, :spots_arr, :choice
+  attr_reader :pos, :spots_arr, :choice
 
   def initialize
     @spots_arr = ['-', '-', '-', '-', '-', '-', '-', '-', '-']
