@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: false
 
 require_relative '../lib/core_game'
 def wrong_input
@@ -15,7 +16,7 @@ def tie_message
   puts "I'm sorry, this was a tie, good luck next time :)"
 end
 
-def map(in_turn, token, pos)
+def board(in_turn, token, pos)
   puts "Now #{in_turn.chomp}, it's your turn, choose wisely \n\n"
   puts " 1 | 2 | 3             #{pos[0]} | #{pos[1]} | #{pos[2]} "
   puts '---+---+---           ---+---+---'
@@ -37,4 +38,3 @@ def game_setting
   playing.switch
 end
 
-game_setting

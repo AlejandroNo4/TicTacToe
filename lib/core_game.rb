@@ -1,3 +1,6 @@
+# frozen_string_literal: false
+
+# lib/core_game.rb
 # Assign the tokens to the players
 class Player
   attr_accessor :char
@@ -11,7 +14,7 @@ end
 
 # Makes the comparison
 class CoreTest
-  attr_reader :test_res
+  attr_accessor :test_res, :x_choices
 
   def initialize
     @lines = [/[1, 2, 3]/, /[4, 5, 6]/, /[7, 8, 9]/,
@@ -37,29 +40,35 @@ class CoreTest
   end
 end
 
-# Assing the chosen token to its place in the map
+# Assing the chosen token to its place in the board
 class Spots
-  attr_reader :pos, :spots_arr, :choice
+  attr_reader :pos, :spots_arr
+  attr_accessor :choice
 
   def initialize
     @spots_arr = ['-', '-', '-', '-', '-', '-', '-', '-', '-']
-    @ocuped = []
+    @taked = []
     @choice = 0
+  end
+
+  def is_val
+    @choice = gets
+    if @choice.to_i.zero? || @taked.any? { |u| u == @choice } || @choice.to_i.between?(1, 9) == false
+       return wrong_input
+    else 
+      return true
+    end
   end
 
   def assign(token)
     @invalid = true
     while @invalid == true
-      @choice = gets
-      (unless @choice.to_i.zero? || @ocuped.any? { |u| u == @choice } || @choice.to_i.between?(1, 9) == false
-         return acti(token); end)
-      wrong_input
-      redo
+      is_val == true ? acti(token) : redo
     end
   end
 
   def acti(token)
-    @ocuped << @choice
+    @taked << @choice
     @spots_arr[@choice.to_i - 1] = token
     @invalid = false
   end
@@ -68,25 +77,26 @@ end
 # Runs the classes
 class Start
   attr_writer :player_one, :player_two
+  attr_accessor :check_if_win, :i
 
   def initialize(player_one, player_two)
     @player_one = player_one
     @player_two = player_two
     @game_spots = Spots.new
     @check_if_win = CoreTest.new
+    @i = 0
   end
 
   def switch
     between = [@player_one, @player_two].cycle
-    i = 0
-    while i < 9
-      @turn = between.next
-      map(@turn.name, @turn.char, @game_spots.spots_arr)
-      @check_if_win.checker(@game_spots.choice, @turn.char)
-      return winner_msg(@turn.name) if @check_if_win.test_res == true
+    while @i < 9
+      @in_turn = between.next
+      return winner_msg(@in_turn.name) if @check_if_win.test_res == true
 
-      i += 1
-      tie_message if i == 9
+      board(@in_turn.name, @in_turn.char, @game_spots.spots_arr)
+      @check_if_win.checker(@game_spots.choice, @in_turn.char)
+      @i += 1
+      tie_message if @i == 9
     end
   end
 end
