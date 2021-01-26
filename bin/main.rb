@@ -37,4 +37,3 @@ def game_setting
   playing = Start.new(first, second)
   playing.switch
 end
-

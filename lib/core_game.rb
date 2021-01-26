@@ -51,20 +51,18 @@ class Spots
     @choice = 0
   end
 
-  def is_val
+  def valid_char
     @choice = gets
     if @choice.to_i.zero? || @taked.any? { |u| u == @choice } || @choice.to_i.between?(1, 9) == false
-       return wrong_input
-    else 
-      return true
+      wrong_input
+    else
+      true
     end
   end
 
   def assign(token)
     @invalid = true
-    while @invalid == true
-      is_val == true ? acti(token) : redo
-    end
+    valid_char == true ? acti(token) : redo while @invalid == true
   end
 
   def acti(token)

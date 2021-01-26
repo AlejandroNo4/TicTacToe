@@ -21,7 +21,7 @@ describe Start do
     let(:plyr_x) { Player.new('Jay') }
     let(:plyr_o) { Player.new('Joe') }
     let(:test_game) { Start.new(plyr_x, plyr_o) }
-    let(:jay_won) {winner_msg('Jay')}
+    let(:jay_won) { winner_msg('Jay') }
 
     context 'trigger the winning message with the current player' do
       it 'returns the winning message' do
@@ -40,19 +40,31 @@ describe Start do
 end
 
 describe Spots do
-  describe '.is_val' do
+  describe '.valid_char' do
     let(:test_spot) { Spots.new }
     let(:invalid_input) { StringIO.new('S') }
-    
 
     context 'returns the message wrong_input if the input is invalid' do
       it 'invalid message' do
         $stdin = invalid_input
-        expect(test_spot.is_val).to eql(wrong_input)
+        expect(test_spot.valid_char).to eql(wrong_input)
+        $stdin = STDIN
+      end
+    end
+
+    context 'returns false if the given spot is already taked' do
+      it 'assign repeated spot' do
+        test_spot.choice = 6
+        test_spot.acti('O')
+        $stdin = repeated_input
+        expect(test_spot.acti('X')).to eql(false)
         $stdin = STDIN
       end
     end
   end
+end
+
+describe Spots do
   describe '.acti()' do
     let(:test_spot) { Spots.new }
     let(:repeated_input) { StringIO.new('6') }
@@ -72,16 +84,6 @@ describe Spots do
         expect(test_spot.spots_arr).to eql(['-', '-', '-', '-', '-', 'O', '-', '-', '-'])
       end
     end
-
-    context 'returns false if the given spot is already taked' do
-      it 'assign repeated spot' do
-        test_spot.choice = 6
-        test_spot.acti('O')
-        $stdin = repeated_input
-        expect(test_spot.acti('X')).to eql(false)
-        $stdin = STDIN
-      end
-    end
   end
 end
 
@@ -98,7 +100,7 @@ describe CoreTest do
     end
   end
   describe '.checker' do
-    let(:test_check) {CoreTest.new}
+    let(:test_check) { CoreTest.new }
 
     context 'adds the given position to the collection, and runs the .search method' do
       it 'adds the position 3 to the x_choices' do
