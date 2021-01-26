@@ -1,5 +1,3 @@
-# frozen_string_literal: false
-
 # lib/core_game.rb
 # Assign the tokens to the players
 class Player

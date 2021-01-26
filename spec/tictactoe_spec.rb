@@ -1,5 +1,3 @@
-# frozen_string_literal: false
-
 # spec/test_tictactoe.rb
 require '../lib/core_game'
 require '../bin/main'
@@ -8,10 +6,16 @@ require 'stringio'
 describe Player do
   let(:first) { Player.new('Jay') }
 
-  context 'assign the names their token' do
+  context 'it is possible to attach the token to the variable @char' do
     it 'assign the token X to the player' do
       first.char = 'X'
       expect(first.char).to eql('X')
+    end
+  end
+
+  context 'the name of the player is assigned to the @name variable' do
+    it 'check if the name of the player is Jay' do
+      expect(first.name).to eql('Jay')
     end
   end
 end
@@ -23,15 +27,15 @@ describe Start do
     let(:test_game) { Start.new(plyr_x, plyr_o) }
     let(:jay_won) { winner_msg('Jay') }
 
-    context 'trigger the winning message with the current player' do
+    context 'triggers the winning message with the current player' do
       it 'returns the winning message' do
         test_game.check_if_win.test_res = true
         expect(test_game.switch).to eql(jay_won)
       end
     end
 
-    context 'trigger the tie message after nine rounds' do
-      it 'puts tie' do
+    context 'triggers the tie message after nine rounds' do
+      it 'puts tie_message' do
         test_game.i = 9
         expect(test_game.switch).to eql(tie_message)
       end
@@ -43,6 +47,7 @@ describe Spots do
   describe '.valid_char' do
     let(:test_spot) { Spots.new }
     let(:invalid_input) { StringIO.new('S') }
+    let(:repeated_input) { StringIO.new('6') }
 
     context 'returns the message wrong_input if the input is invalid' do
       it 'invalid message' do
@@ -52,7 +57,7 @@ describe Spots do
       end
     end
 
-    context 'returns false if the given spot is already taked' do
+    context 'returns false if the given spot is not available' do
       it 'assign repeated spot' do
         test_spot.choice = 6
         test_spot.acti('O')
@@ -67,10 +72,9 @@ end
 describe Spots do
   describe '.acti()' do
     let(:test_spot) { Spots.new }
-    let(:repeated_input) { StringIO.new('6') }
 
-    context 'assign the X token to the valid given spot in the array that will be shown as the board' do
-      it 'assign choosed spot' do
+    context 'assign the X token to the validly given spot in the array that will be the board' do
+      it 'assign the token X to the chosen spot' do
         test_spot.choice = 4
         test_spot.acti('X')
         expect(test_spot.spots_arr).to eql(['-', '-', '-', 'X', '-', '-', '-', '-', '-'])
@@ -78,7 +82,7 @@ describe Spots do
     end
 
     context 'assign the O token to the valid given spot' do
-      it 'assign choosed spot' do
+      it 'assign the token O to the chosen spot' do
         test_spot.choice = 6
         test_spot.acti('O')
         expect(test_spot.spots_arr).to eql(['-', '-', '-', '-', '-', 'O', '-', '-', '-'])
@@ -99,6 +103,7 @@ describe CoreTest do
       end
     end
   end
+
   describe '.checker' do
     let(:test_check) { CoreTest.new }
 
