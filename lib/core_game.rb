@@ -12,7 +12,7 @@ end
 
 # Makes the comparison
 class CoreTest
-  attr_accessor :test_res, :x_choices
+  attr_accessor :test_res, :x_choices, :o_choices
 
   def initialize
     @lines = [/[1, 2, 3]/, /[4, 5, 6]/, /[7, 8, 9]/,
@@ -73,7 +73,7 @@ end
 # Runs the classes
 class Start
   attr_writer :player_one, :player_two
-  attr_accessor :check_if_win, :i
+  attr_accessor :check_if_win
 
   def initialize(player_one, player_two)
     @player_one = player_one
