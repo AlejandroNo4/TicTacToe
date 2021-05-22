@@ -8,7 +8,7 @@ def wrong_input
 end
 
 def winner_msg(name)
-  puts "Congrats #{name.chomp} you have WON!!! :D"
+  puts "Bad news for you #{name.chomp}, your opponent won :("
 end
 
 def tie_message
