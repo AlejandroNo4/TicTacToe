@@ -65,6 +65,14 @@ Here the game ends with a tie.
 
 And that's all! Go ahead, try it by yourself. :)
 
+<br/>
+
+## Live Version
+
+[Live version here!](https://replit.com/@AlejandroNo4/TicTacToe)
+
+<br/>
+
 ## Built With
 
 - Ruby 3.0.0
